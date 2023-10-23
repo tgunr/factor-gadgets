@@ -8,11 +8,24 @@ USING: accessors arrays documents kernel math math.parser
  
 IN: factor-gadgets
 
-WINDOW: fg { { title "Factor Gadgets" } }
+WINDOW: gadget-window { { title "Factor Gadgets" } }
     <shelf>
-    "Celsius =" <label> add-gadget 
+    "Celsius" <label> add-gadget 
     "Fahrenheit" <label> add-gadget
     { 10 0 } >>gap 0.5 >>align { 5 5 } <border>
     >>gadgets
+;
+
+TUPLE: gadget-tool < tool ;
+
+: do-gadget-tool ( -- ) 
+    [ gadget-tool { 600 300 } set-tool-dim 
+    gadget-tool new 
+    <shelf>
+    "Celsius" <label> add-gadget 
+    "Fahrenheit" <label> add-gadget
+    add-gadget
+    "Gadgets" open-window 
+] with-ui
 ;
 
